@@ -1,6 +1,8 @@
 {
   "name": "jobversand",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "id": "ef08eac6"
 }

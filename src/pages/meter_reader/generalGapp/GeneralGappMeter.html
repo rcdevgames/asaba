@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Input Meter</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	<ion-item>
+	    <ion-label stacked>Print Black</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.print_black" name="print_black" (keyup)="calc()" placeholder="Input Print Black"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>Print Color</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.print_color" name="print_color" (keyup)="calc()" placeholder="Input Print Color"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>Miss Copy BW</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.miss_copy_bw" name="miss_copy_bw" (keyup)="calc()" placeholder="Input Miss Copy BW"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>Miss Copy Color</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.print_copy_color" name="print_copy_color" (keyup)="calc()" placeholder="Input Print Copy Color"></ion-input>
+	</ion-item>
+	<br />
+	<ion-item>
+	    <ion-label stacked>Total</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.total" name="total" placeholder="Auto by system (print black + print color)" readOnly style="font-weight: bold;"></ion-input>
+	</ion-item>
+
+	<ion-label style="margin: 20px">Image 1</ion-label>
+	<ion-item>
+	  	<div class="camera" (click)="takePicture(1)">
+	  		<img src={{pathForImage(image1)}} class="img-logo" [hidden]="image1 === null">
+	  		<img src="assets/camera.png" class="img-logo" [hidden]="image1 !== null">
+    	</div>
+	</ion-item>
+
+  	<ion-label style="margin: 20px" [hidden]="image1 === null">Image 2</ion-label>
+	<ion-item [hidden]="image1 === null">
+	  	<div class="camera" (click)="takePicture(2)">
+	  		<img src={{pathForImage(image2)}} class="img-logo" [hidden]="image2 === null">
+	  		<img src="assets/camera.png" class="img-logo" [hidden]="image2 !== null">
+    	</div>
+	</ion-item>
+
+<!--   	<ion-label style="margin: 20px" [hidden]="image2 === null">Image 3</ion-label>
+	<ion-item [hidden]="image2 === null">
+	  	<div class="camera" (click)="takePicture(3)">
+	  		<img src={{pathForImage(image3)}} class="img-logo" [hidden]="image3 === null">
+	  		<img src="assets/camera.png" class="img-logo" [hidden]="image3 !== null">
+    	</div>
+	</ion-item> -->
+	  
+	<div padding>
+	  	<button ion-button full color="primary" (click)="getLastMeter()">Get Last Meter</button>
+	  	<button ion-button full color="primary" (click)="save()">Save Meter</button>
+	</div>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{selectedSchedule.detailCustomer.customer_name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	<ion-item>
+	    <ion-label stacked>Order Type</ion-label>
+	    <ion-input type="text" value="Collect Meter" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>EQ Number</ion-label>
+	    <ion-input type="text" value="{{selectedSchedule.contract.eq_number}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>Machine Type</ion-label>
+	    <ion-input type="text" value="{{selectedSchedule.machineType.mesin_type_name}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>Address</ion-label>
+	    <ion-input type="text" value="{{selectedSchedule.detailCustomer.customer_address}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>PIC Name</ion-label>
+	    <ion-input type="text" value="{{selectedSchedule.contract.pic_customer}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>PIC Phone</ion-label>
+	    <ion-input type="text" value="{{selectedSchedule.contract.pic_phone}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <div padding>
+	  	<button *ngIf="selectedSchedule.status_schedule == 'available'" ion-button icon-right full color="primary" (click)="takeTask(selectedSchedule.id_schedule_customer)">Take a Task</button>
+	  	<button *ngIf="selectedSchedule.status_schedule == 'took'" ion-button icon-right full color="primary" (click)="inputMeter(event,selectedSchedule)">Input Meter <ion-icon name="ios-arrow-dropright-circle"></ion-icon></button>
+	  	<!-- <button ion-button icon-right full color="primary">Meter History <ion-icon name="ios-arrow-dropright-circle"></ion-icon></button> -->
+	  </div>
+  </ion-list>
+</ion-content>

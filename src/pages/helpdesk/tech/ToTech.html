@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Assign to technician</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	<ion-item>
+		  <ion-label>Assign To</ion-label>
+		  <ion-select [(ngModel)]="selectedTech" name="selectedTech">
+		    <ion-option value="{{singleTech.nik}}">{{singleTech.employee_name}}</ion-option>
+		    <ion-option *ngFor="let tech of dataTech" value="{{tech.nik}}">{{tech.employee_name}}</ion-option>
+		  </ion-select>
+		</ion-item>
+	  <div padding>
+	  <button ion-button icon-right full color="primary" (click)="confirmation()">Assign</button>
+	  </div>
+  </ion-list>
+</ion-content>

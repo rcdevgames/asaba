@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Input Meter</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	<ion-item>
+	    <ion-label stacked>Meter Color A3</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.meter_color_a3" name="meter_color_a3" (keyup)="calcColor()" required placeholder="Input Meter Color A3"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>Meter Color A4</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.meter_color_a4" name="meter_color_a4" (keyup)="calcColor()" placeholder="Input Meter Color A3"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>Meter BW A3</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.meter_bw_a3" name="meter_bw_a3" (keyup)="calcBw()" placeholder="Input Meter BW A3"></ion-input>
+	</ion-item>
+	<ion-item>
+	    <ion-label stacked>Meter BW A4</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.meter_bw_a4" name="meter_bw_a4" (keyup)="calcBw()" placeholder="Input Meter BW A4"></ion-input>
+	</ion-item>
+	<ion-item>
+	    <ion-label stacked>Miss Copy Color</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.miss_copy_color" name="miss_copy_color" (keyup)="calcColor()" placeholder="Input Miss Copy Color"></ion-input>
+	</ion-item>
+	<ion-item>
+	    <ion-label stacked>Meter Copy BW</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.meter_copy_bw" name="meter_copy_bw" (keyup)="calcBw()" placeholder="Input Meter BW A3"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>Total Color</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.total_color" name="total_color" placeholder="Auto by system" readOnly style="font-weight: bold;"></ion-input>
+	</ion-item>
+	<ion-item>
+	    <ion-label stacked>Total BW</ion-label>
+	    <ion-input type="number" [(ngModel)]="meter.total_bw" name="total_bw" placeholder="Auto by system" readOnly style="font-weight: bold;"></ion-input>
+	</ion-item>
+
+	<ion-label style="margin: 20px">Image 1</ion-label>
+	<ion-item>
+	  	<div class="camera" (click)="takePicture(1)">
+	  		<img src={{pathForImage(image1)}} class="img-logo" [hidden]="image1 === null">
+	  		<img src="assets/camera.png" class="img-logo" [hidden]="image1 !== null">
+    	</div>
+	</ion-item>
+  	<ion-label style="margin: 20px" [hidden]="image1 === null">Image 2</ion-label>
+	<ion-item [hidden]="image1 === null">
+	  	<div class="camera" (click)="takePicture(2)">
+	  		<img src={{pathForImage(image2)}} class="img-logo" [hidden]="image2 === null">
+	  		<img src="assets/camera.png" class="img-logo" [hidden]="image2 !== null">
+    	</div>
+	</ion-item>
+
+	<div padding>
+		<button ion-button full color="primary" (click)="getLastMeter()">Get Last Meter</button>
+	  	<button ion-button full color="primary" (click)="save()">Save Meter</button>
+	</div>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Input Meter</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	<ion-item>
+	    <ion-label stacked>Copy Black</ion-label>
+	    <ion-input type="number" [(ngModel)]="input.copy_black" (keyup)="calcBW()" name="copy_black" required placeholder="Input Meter BW"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>Copy Color</ion-label>
+	    <ion-input type="number" [(ngModel)]="input.copy_color" (keyup)="calcColor()" name="copy_color" required placeholder="Input Meter A3"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>Print Black</ion-label>
+	    <ion-input type="number" [(ngModel)]="input.print_black" (keyup)="calcBW()" name="print_black" required placeholder="Input Meter A3"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>Print Color</ion-label>
+	    <ion-input type="number" [(ngModel)]="input.print_color" (keyup)="calcColor()" name="print_color" required placeholder="Input Meter Color"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>FAX</ion-label>
+	    <ion-input type="number" [(ngModel)]="input.fax" (keyup)="calcBW()" name="fax" required placeholder="Input Meter Color"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>Total BW</ion-label>
+	    <ion-input type="number" [(ngModel)]="input.total_bw" name="total_bw" required readOnly style="font-weight: bold;"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label stacked>Total Color</ion-label>
+	    <ion-input type="number" [(ngModel)]="input.total_color" name="total_color" required readOnly style="font-weight: bold;"></ion-input>
+	</ion-item>
+
+	<ion-label style="margin: 20px">Image 1</ion-label>
+	<ion-item>
+	  	<div class="camera" (click)="takePicture(1)">
+	  		<img src={{pathForImage(image1)}} class="img-logo" [hidden]="image1 === null">
+	  		<img src="assets/camera.png" class="img-logo" [hidden]="image1 !== null">
+    	</div>
+	</ion-item>
+	
+	<div padding>
+	  	<button ion-button full color="primary" (click)="saveMeter()">Save Meter</button>
+	</div>
+  </ion-list>
+</ion-content>

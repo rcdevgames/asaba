@@ -1,0 +1,48 @@
+import { Component } from '@angular/core';
+import { NavController, Platform } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+
+@Component({
+  selector: 'page-home',
+  templateUrl: 'home.html'
+})
+export class HomePage {
+	globalStorage : any;
+	globalSqlObject : SQLiteObject;
+	storageName : any;
+	constructor(public navCtrl: NavController,private storage :Storage,private platform : Platform, private sqlite: SQLite) {
+		// if (this.platform.is('android')) {
+			this.globalStorage = storage;
+		  storage.set('name','Max');
+		  storage.get('name').then((val) => {
+		  	this.storageName =val;
+		    console.log('Your name is', val);
+		  });
+
+		  // SQLITE
+		  sqlite.create({
+        name: 'my.db',
+        location: 'default'
+      }).then((db: SQLiteObject) => {
+      	console.log('Your fucking stupid database is fucking running');
+      	db.executeSql('create table danceMoves(name VARCHAR(32))',{}).then(() => console.log('Kill me please'))
+      	.catch(err => console.log(err));
+      });
+
+    // }
+	}
+
+	createTable() {
+		this.globalSqlObject.executeSql('create table fuck(name VARCHAR(32))',{}).then(() => console.log('Kill me please'))
+    .then(() => console.log('Kill me please'));
+	}
+
+	getStorage() {
+		this.globalStorage.get('name').then((val) => {
+	    console.log('Your name is', val);
+	    this.storageName = val;
+	  });
+	}
+
+}

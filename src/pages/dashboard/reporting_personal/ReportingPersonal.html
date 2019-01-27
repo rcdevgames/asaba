@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Reporting Personal</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <button ion-item>
+        <ion-icon name="asaba-check" item-left></ion-icon>
+          Preventive Maintenance (PM) <br />
+          <span style="font-size:11px">{{pm}} Done</span>
+      </button>
+      <button ion-item>
+        <ion-icon name="asaba-setting" item-left></ion-icon>
+          Customer Request <br />
+          <span style="font-size:11px">{{customer_request}} Done</span>
+      </button>
+      <button ion-item>
+        <ion-icon name="asaba-handshake" item-left></ion-icon>
+          CAWF <br />
+          <span style="font-size:11px">{{cawf}} Done</span>
+      </button>
+      <button ion-item>
+        <ion-icon name="asaba-times" item-left></ion-icon>
+          Response Time > 2 Hours <br />
+          <span style="font-size:11px">{{more_two}} Task</span>
+      </button>
+      <button ion-item>&nbsp;</button>
+  </ion-list>
+</ion-content>

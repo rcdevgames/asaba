@@ -1,0 +1,98 @@
+<ion-header>
+  <!-- <ion-navbar color="primary" *ngIf="status == 'assigned' || status == 'uncomplete'"> -->
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{selectedTask.detailCustomer.customer_name}}</ion-title>
+  </ion-navbar>
+  <!-- hideBackButton -> To hide back button -->
+  <!-- <ion-navbar color="primary" *ngIf="status == 'took' || status == 'arrived'" >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{selectedTask.detailCustomer.customer_name}}</ion-title>
+  </ion-navbar> -->
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Job Ticket</ion-label>
+      <ion-input type="text" placeholder="{{selectedTask.no_job_tiket}}" readOnly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Order Type</ion-label>
+      <ion-input type="text" placeholder="{{selectedTask.orderType.detail_order_type}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>EQ Number</ion-label>
+      <ion-input type="text" placeholder="{{selectedTask.contract.eq_number}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Serial Number</ion-label>
+      <ion-input type="text" placeholder="{{selectedTask.contract.serial_number}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Machine Type</ion-label>
+      <ion-input type="text" placeholder="{{selectedTask.machineType.mesin_type_name}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Address</ion-label>
+      <ion-input type="text" placeholder="{{selectedTask.detailCustomer.customer_address}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>PIC Name</ion-label>
+      <ion-input type="text" placeholder="{{selectedTask.contract.pic_customer}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>PIC Phone</ion-label>
+      <ion-input type="text" placeholder="{{selectedTask.contract.pic_phone}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Overtime Rule</ion-label>
+      <ion-input type="text" placeholder="{{selectedTask.overtime.overtime_rule_name}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Problem Clarification</ion-label>
+      <ion-input type="text" placeholder="{{(selectedTask.problem)?selectedTask.problem.problem_name:'OTHERS'}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Problem Description</ion-label>
+      <ion-input type="text" placeholder="{{selectedTask.problem_description}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Note</ion-label>
+      <ion-input type="text" placeholder="{{selectedTask.status_desc}}" readOnly></ion-input>
+    </ion-item>
+
+
+    <div padding>
+      <div id="default" *ngIf="status == 'assigned' || status == 'uncomplete'">
+        <button ion-button icon-right full color="primary" (click)="takeTask()">Take a Task</button>
+        <button ion-button icon-right full color="primary" (click)="meterHistory()">Task History</button>
+      </div>
+      <div id="arrived" *ngIf="status == 'took'">
+        <button ion-button icon-right full color="primary" (click)="arrived()">Arrived</button>
+        <!-- <button ion-button icon-right full color="primary" (click)="arrived()" [hidden]="arived === false">Arrived</button> -->
+        <button ion-button icon-right full color="primary" (click)="cancelProcess()">Revert Task</button>
+        <button ion-button icon-right full color="primary" (click)="routeCustomer()">Route to Customer</button>
+      </div>
+      <div id="input" *ngIf="status == 'arrived'">
+        <button ion-button icon-right full color="primary" (click)="inputMeter()">Input Meter <ion-icon name="ios-arrow-dropright-circle"></ion-icon></button>
+        <!-- <button ion-button icon-right full color="primary" (click)="completeTask()">Task Complete <ion-icon name="ios-arrow-dropright-circle"></ion-icon></button> -->
+        <button ion-button icon-right full color="primary" (click)="cancelProcess()">Revert Task</button>
+      </div>
+    </div>
+  </ion-list>
+</ion-content>

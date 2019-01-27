@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Input Meter</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	<ion-item>
+	    <ion-label stacked>Total BW</ion-label>
+	    <ion-input type="number" required [(ngModel)]="input.total_bw" name="total_bw" (keyup)="calc()" placeholder="Input Total BW"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>Total Color</ion-label>
+	    <ion-input type="number" required [(ngModel)]="input.total_color" name="total_color" (keyup)="calc()" placeholder="Input Total Color"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>Total</ion-label>
+	    <ion-input type="number" [(ngModel)]="input.total" name="total" value="0" readOnly style="font-weight: bold;"></ion-input>
+	  </ion-item>
+
+  	  <ion-label style="margin: 20px">Image 1</ion-label>
+	  <ion-item>
+	  	<div class="camera" (click)="takePicture(1)">
+	  		<img src={{pathForImage(image1)}} class="img-logo" [hidden]="image1 === null">
+	  		<img src="assets/camera.png" class="img-logo" [hidden]="image1 !== null">
+    	</div>
+	  </ion-item>
+
+  	  <!-- <ion-label style="margin: 20px" [hidden]="image1 === null">Image 2</ion-label>
+	  <ion-item [hidden]="image1 === null">
+	  	<div class="camera" (click)="takePicture(2)">
+	  		<img src={{pathForImage(image2)}} class="img-logo" [hidden]="image2 === null">
+	  		<img src="assets/camera.png" class="img-logo" [hidden]="image2 !== null">
+    	</div>
+	  </ion-item>
+
+  	  <ion-label style="margin: 20px" [hidden]="image2 === null">Image 3</ion-label>
+	  <ion-item [hidden]="image2 === null">
+	  	<div class="camera" (click)="takePicture(3)">
+	  		<img src={{pathForImage(image3)}} class="img-logo" [hidden]="image3 === null">
+	  		<img src="assets/camera.png" class="img-logo" [hidden]="image3 !== null">
+    	</div>
+	  </ion-item> -->
+
+	  <div padding>
+	  	<button ion-button icon-right full color="primary" (click)="saveMeter()">Save Meter</button>
+	  </div>
+  </ion-list>
+</ion-content>

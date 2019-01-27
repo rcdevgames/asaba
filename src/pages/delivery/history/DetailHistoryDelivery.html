@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>SPIR {{dataHistory.spir_number}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+	  <ion-card>
+		<ion-card-header>
+		Customer Name
+		</ion-card-header>
+		<ion-card-content>{{dataHistory.detailCustomer.customer_name}}</ion-card-content>
+	  </ion-card>
+	  <ion-card>
+		<ion-card-header>
+		Address
+		</ion-card-header>
+		<ion-card-content>{{dataHistory.detailCustomer.customer_address}}</ion-card-content>
+	  </ion-card>
+	  <ion-card>
+		<ion-card-header>
+		PIC Name
+		</ion-card-header>
+		<ion-card-content>{{dataHistory.contract.pic_customer}}</ion-card-content>
+	  </ion-card>
+
+    <button ion-item *ngFor="let det of dataHistory.detailToner">
+		<ion-icon *ngIf="det.toner_type == 'C'" name="water" item-left style="color: #00FFFF"></ion-icon>
+		<ion-icon *ngIf="det.toner_type == 'M'" name="water" item-left style="color: #FF00FF"></ion-icon>
+		<ion-icon *ngIf="det.toner_type == 'Y'" name="water" item-left style="color: #FFFF00"></ion-icon>
+		<ion-icon *ngIf="det.toner_type == 'K'" name="water" item-left style="color: #000000"></ion-icon>
+        
+        {{det.toner_name}} <br />
+        <span style="font-size:11px">Code : {{det.part_code}}</span><br />
+        <span style="font-size:11px">Qty : {{det.approve_qty}}</span>
+    </button>
+
+    <button ion-item *ngFor="let det of dataHistory.detailPart">
+		<ion-icon name="print"></ion-icon>
+        
+        Spare Part <br />
+        <span style="font-size:11px">Code : {{det.part_code}}</span><br />
+        <span style="font-size:11px">Qty : {{det.qty_part_toner}}</span>
+    </button>
+
+  </ion-list>
+</ion-content>

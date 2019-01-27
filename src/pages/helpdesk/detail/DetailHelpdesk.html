@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{selectedItem.detailCustomer.customer_name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	 <ion-item>
+      <ion-label stacked>Job Ticket</ion-label>
+      <ion-input type="text" placeholder="{{selectedItem.no_job_tiket}}" readOnly></ion-input>
+    </ion-item>
+  	<ion-item>
+	    <ion-label stacked>Order Type</ion-label>
+	    <ion-input type="text" value="{{selectedItem.orderType.detail_order_type}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>EQ Number</ion-label>
+	    <ion-input type="text" value="{{selectedItem.contract.eq_number}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>Machine Type</ion-label>
+	    <ion-input type="text" value="{{selectedItem.machineType.mesin_type_name}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>Address</ion-label>
+	    <ion-input type="text" value="{{selectedItem.detailCustomer.customer_address}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>PIC Name</ion-label>
+	    <ion-input type="text" value="{{selectedItem.contract.pic_customer}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>PIC Phone</ion-label>
+	    <ion-input type="text" value="{{selectedItem.contract.pic_phone}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>Problem Clarification</ion-label>
+	    <ion-input type="text" value="{{selectedItem.problem.problem_name}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>Customer Problem</ion-label>
+	    <ion-input type="text" value="{{selectedItem.problem_description}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+      <ion-label stacked>Note</ion-label>
+      <ion-input type="text" placeholder="{{selectedItem.status_desc}}" readOnly></ion-input>
+    </ion-item>
+	  <div *ngIf="historyVal == '1'">
+	  	<div *ngIf="selectedItem.meter_collect != NULL">
+			<div padding>
+	  			<button ion-button icon-right full color="primary" (click)="viewMeter()">History Input Meter</button>
+	  		</div>
+	  	</div>
+	  </div>
+  	  <div *ngIf="historyVal == 2">
+  	  	<div *ngIf="selectedItem.assign_task == nik || selectedItem.assign_task == ''">
+			<div *ngIf="selectedItem.status == 'took'"><!-- Condition when status == 'took' -->
+			  	<div padding>
+				  	<button ion-button icon-right full color="primary" (click)="byCall()">Fix By Call a Phone <ion-icon name="md-call"></ion-icon></button>
+				  	<button ion-button icon-right full color="primary" (click)="toTech($event,selectedItem)">Assign To Technisian <ion-icon name="md-build"></ion-icon></button>
+				  </div>
+			</div><!-- / Condition when status == 'took' -->
+			<div *ngIf="selectedItem.status == 'pending' || selectedItem.status == 'assigned' || selectedItem.status == 'uncomplete'"><!-- Condition when status == 'pending' -->
+			  	<div padding>
+				  	<button ion-button icon-right full color="primary" (click)="takeTask()">Take a Task</button>
+			        <button ion-button icon-right full color="primary" (click)="viewMeter()">Task History</button>
+		        </div>
+			</div><!-- / Condition when status == 'pending' -->
+  	  	</div>
+  	  	<div *ngIf="selectedItem.assign_task != nik && selectedItem.assign_task != '' && selectedItem.status == 'assigned'">
+		  	<div padding>
+			  	<button ion-button icon-right full color="primary" (click)="byCall()">Fix By Call a Phone <ion-icon name="md-call"></ion-icon></button>
+			  	<button ion-button icon-right full color="primary" (click)="toTech($event,selectedItem)">Assign To Technisian <ion-icon name="md-build"></ion-icon></button>
+			</div>
+  	  	</div>
+	  </div>
+
+  </ion-list>
+</ion-content>

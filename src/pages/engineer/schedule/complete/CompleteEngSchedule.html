@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Task Complete</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	<ion-item>
+		  <ion-label>Action</ion-label>
+		  <ion-select [(ngModel)]="complete.status" name="status">
+		    <ion-option value="complete">Complete</ion-option>
+		  </ion-select>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked>Note</ion-label>
+	    <ion-input type="text" [(ngModel)]="complete.status_desc" name="status_desc" placeholder="Some Note"></ion-input>
+		</ion-item>
+	  <div padding>
+	  	<button ion-button icon-right full color="primary" (click)="setComplete()">Submit</button>
+	  </div>
+  </ion-list>
+</ion-content>

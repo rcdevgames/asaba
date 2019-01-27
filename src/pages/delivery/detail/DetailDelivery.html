@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>SPIR {{selectedSchedule.spir_number}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	  <ion-card>
+		<ion-card-header>
+		Job Ticket
+		</ion-card-header>
+		<ion-card-content>{{selectedSchedule.no_job_tiket}}</ion-card-content>
+	  </ion-card>
+	  <ion-card>
+		<ion-card-header>
+		Customer Name
+		</ion-card-header>
+		<ion-card-content>{{selectedSchedule.detailCustomer.customer_name}}</ion-card-content>
+	  </ion-card>
+	  <ion-card>
+		<ion-card-header>
+		Address
+		</ion-card-header>
+		<ion-card-content>{{selectedSchedule.detailCustomer.customer_address}}</ion-card-content>
+	  </ion-card>
+	  <ion-card>
+		<ion-card-header>
+		PIC Name
+		</ion-card-header>
+		<ion-card-content>{{selectedSchedule.contract.pic_customer}}</ion-card-content>
+	  </ion-card>
+
+    <button ion-item *ngFor="let det of selectedSchedule.detailToner">
+		<ion-icon *ngIf="det.toner_type == 'C'" name="water" item-left style="color: #00FFFF"></ion-icon>
+		<ion-icon *ngIf="det.toner_type == 'M'" name="water" item-left style="color: #FF00FF"></ion-icon>
+		<ion-icon *ngIf="det.toner_type == 'Y'" name="water" item-left style="color: #FFFF00"></ion-icon>
+		<ion-icon *ngIf="det.toner_type == 'K'" name="water" item-left style="color: #000000"></ion-icon>
+        
+        {{det.toner_name}} <br />
+        <span style="font-size:11px">Code : {{det.part_code}}</span><br />
+        <span style="font-size:11px">Qty : {{det.approve_qty}}</span>
+    </button>
+
+    <button ion-item *ngFor="let det of selectedSchedule.detailPart">
+		<ion-icon name="print" item-left></ion-icon>
+        
+        Spare Part<br />
+        <span style="font-size:11px">Code : {{det.part_code}}</span><br />
+        <span style="font-size:11px">Qty : {{det.qty_part_toner}}</span>
+    </button>
+
+	  <div padding>
+	  	<div *ngIf="selectedSchedule.status_delivery != 'took'">
+	  		<button ion-button icon-right full color="primary" (click)="took(selectedSchedule.id_deliv_toner)">Take a Task <ion-icon name="ios-arrow-dropright-circle"></ion-icon></button>
+	  	</div>
+	  	<div *ngIf="selectedSchedule.status_delivery == 'took'">
+	  		<button ion-button icon-right full color="primary" (click)="routeCustomer(selectedSchedule.contract.gps_coordinate)">Route to customer <ion-icon name="ios-arrow-dropright-circle"></ion-icon></button>
+	  		<button ion-button icon-right full color="primary" (click)="completed(selectedSchedule.id_deliv_toner)">Delivery Complete <ion-icon name="ios-arrow-dropright-circle"></ion-icon></button>
+	  	</div>
+	  </div>
+  </ion-list>
+</ion-content>

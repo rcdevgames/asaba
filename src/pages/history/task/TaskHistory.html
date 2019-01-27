@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <span class="logo-title">List Task History</span>
+    <div class="icon-right">
+      <!-- <ion-icon class="forIcon" (click)="presentActionSheet()" name="md-notifications"></ion-icon> -->
+      <ion-icon class="forIcon" (click)="openProfileModal()" name="ios-contact"></ion-icon>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	<div *ngIf="previlage == 'SE'">
+      <button ion-item *ngFor="let detail of dataHistory" (click)="selectHistory(detail)">
+        <ion-icon class="wordWrap" name="md-calendar" item-left></ion-icon>
+          {{detail.detailCustomer.customer_name}} <br />
+          <span class="wordWrap" style="background-color:#FBAB21;padding:3px;color:white;font-size:12px">{{detail.no_job_tiket}}</span><br />
+          <span class="wordWrap" style="color:#31BF10;font-size:12px">Complete</span> <br />
+          <span class="wordWrap" style="font-size:11px">Last Update : {{detail.update_date_trouble | date: 'dd MMMM y'}} {{detail.update_date_trouble | date: 'shortTime'}}</span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+    </div><!-- / Engineer -->
+    <div *ngIf="previlage == 'DLV'">
+      <button ion-item *ngFor="let detail of dataHistory" (click)="selectHistory(detail)">
+        <ion-icon class="wordWrap" name="md-calendar" item-left></ion-icon>
+          {{detail.detailCustomer.customer_name}} <br />
+          <span class="wordWrap" style="background-color:#FBAB21;padding:3px;color:white;font-size:12px">{{detail.no_job_tiket}}</span><br />
+          <span class="wordWrap" style="color:#31BF10;font-size:12px">Delivered</span> <br />
+          <span class="wordWrap" style="font-size:11px">Last Update : {{detail.update_date | date: 'dd MMMM y'}} {{detail.update_date | date: 'shortTime'}}</span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+    </div><!-- / Delivery -->
+    <div *ngIf="previlage == 'helpdesk' || previlage == 'SPV' || previlage == 'CC'">
+      <button ion-item *ngFor="let detail of dataHistory" (click)="selectHistory(detail)">
+        <ion-icon class="wordWrap" name="md-calendar" item-left></ion-icon>
+          {{detail.detailCustomer.customer_name}} <br />
+          <span class="wordWrap" style="color:#31BF10;font-size:12px">Completed <span *ngIf="detail.assignedEngineer != 'empty'">(Assigned to {{detail.assignedEngineer.employee_name}})</span></span> <br />
+          <span class="wordWrap" style="font-size:11px">Last Update : {{detail.update_date_trouble | date: 'dd MMMM y'}} {{detail.update_date_trouble | date: 'shortTime'}}</span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+    </div><!-- / Hepldesk and SPV -->
+  </ion-list>
+</ion-content>

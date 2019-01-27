@@ -1,4 +1,4 @@
-// http://ionicframework.com/docs/theming/
+// http://ionicframework.com/docs/v2/theming/
 
 
 // App Global Sass
@@ -14,3 +14,43 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+ion-icon {
+    &[class*="asaba-"] {
+        // Instead of using the font-based icons
+        // We're applying SVG masks
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+        width: 1em;
+        height: 1em;
+    }
+    // custom icons
+    &[class*="asaba-printer"] {
+        mask-image: url(../assets/svg-icon/printer.svg);
+    }
+    &[class*="asaba-setting"] {
+        mask-image: url(../assets/svg-icon/setting.svg);
+    }
+    &[class*="asaba-times"] {
+        mask-image: url(../assets/svg-icon/times.svg);
+    }
+    &[class*="asaba-mail"] {
+        mask-image: url(../assets/svg-icon/mail.svg);
+    }
+    &[class*="asaba-list"] {
+        mask-image: url(../assets/svg-icon/list.svg);
+    }
+    &[class*="asaba-lamp"] {
+        mask-image: url(../assets/svg-icon/lamp.svg);
+    }
+    &[class*="asaba-handshake"] {
+        mask-image: url(../assets/svg-icon/handshake.svg);
+    }
+    &[class*="asaba-check"] {
+        mask-image: url(../assets/svg-icon/check.svg);
+    }
+    &[class*="asaba-cmyk"] {
+        mask-image: url(../assets/svg-icon/cmyk.svg);
+    }
+}

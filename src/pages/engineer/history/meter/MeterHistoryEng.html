@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Detail Input Meter</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of selectedItem">
+      <ion-label stacked>{{item.item_name}}</ion-label>
+      <ion-input type="text" value="{{item.item_qty | number}}" readOnly></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>

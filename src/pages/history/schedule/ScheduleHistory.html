@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <span class="logo-title">List Schedule History</span>
+    <div class="icon-right">
+      <!-- <ion-icon class="forIcon" (click)="presentActionSheet()" name="md-notifications"></ion-icon> -->
+      <ion-icon class="forIcon" (click)="openProfileModal()" name="ios-contact"></ion-icon>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	<div *ngIf="previlage == 'SE'">
+      <button ion-item *ngFor="let detail of dataHistory" (click)="selectHistory(detail)">
+        <ion-icon class="wordWrap" name="md-calendar" item-left></ion-icon>
+          <span class="wordWrap">{{detail.detailCustomer.customer_name}}</span><br />
+          <span class="wordWrap" style="color:#31BF10;font-size:12px">Complete</span> <br />
+          <span class="wordWrap" style="font-size:11px">Last Update : {{detail.completed_at}}</span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+    </div><!-- / Engineer -->
+    <div *ngIf="previlage == 'MTR'">
+      <button ion-item *ngFor="let detail of dataHistory" (click)="selectHistory(detail)">
+        <ion-icon class="wordWrap" name="md-calendar" item-left></ion-icon>
+          <span class="wordWrap">{{detail.detailCustomer.customer_name}} </span><br />
+          <span class="wordWrap" style="color:#31BF10;font-size:12px">Complete</span> <br />
+          <span class="wordWrap" style="font-size:11px">Last Update : {{detail.completed_at}}</span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+    </div><!-- / Collect Meter -->
+    
+  </ion-list>
+</ion-content>

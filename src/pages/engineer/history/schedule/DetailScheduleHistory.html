@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{selectedHistory.detailCustomer.customer_name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  	<ion-item>
+	    <ion-label stacked>Order Type</ion-label>
+	    <ion-input *ngIf="selectedHistory.schedule_type == 'engineer'" type="text" value="PM (Periodic Maintenacne)" readOnly></ion-input>
+	    <ion-input *ngIf="selectedHistory.schedule_type == 'meter_reader'" type="text" value="Collect Meter" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>EQ Number</ion-label>
+	    <ion-input type="text" value="{{selectedHistory.contract.eq_number}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>Machine Type</ion-label>
+	    <ion-input type="text" value="{{selectedHistory.machineType.mesin_type_name}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>Address</ion-label>
+	    <ion-input type="text" value="{{selectedHistory.detailCustomer.customer_address}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>PIC Name</ion-label>
+	    <ion-input type="text" value="{{selectedHistory.contract.pic_customer}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>PIC Phone</ion-label>
+	    <ion-input type="text" value="{{selectedHistory.contract.pic_phone}}" readOnly></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+      <ion-label stacked>Note</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.status_desc}}" readOnly></ion-input>
+    </ion-item>
+	  <div padding>
+	  	<button ion-button icon-right full color="primary" (click)="viewMeter()">History Input Meter</button>
+	  </div>
+  </ion-list>
+</ion-content>

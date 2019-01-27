@@ -1,14 +1,180 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+      <span class="logo-title">JobVersand</span>
+      <div class="icon-right">
+      <ion-icon class="forIcon" (click)="initialize()" name="md-refresh"></ion-icon>
+	    <!-- <ion-icon class="forIcon" (click)="presentActionSheet()" name="md-notifications"></ion-icon> -->
+	    <ion-icon class="forIcon" (click)="openProfileModal()" name="ios-contact"></ion-icon>
+	  </div>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <!-- <ion-refresher (ionRefresh)="refreshing($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="crescent" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher> -->
+  <div>
+    <ion-segment [(ngModel)]="tabsmanager">
+      <ion-segment-button value="dashboard">
+        Dashboard
+      </ion-segment-button>
+      <ion-segment-button value="task" *ngIf="thisPrevilage != 'MTR'">
+        Task
+      </ion-segment-button>
+      <ion-segment-button value="schedule" *ngIf="thisPrevilage == 'MTR' || thisPrevilage == 'SE'">
+        Schedule
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- Content Tabs Manager -->
+  <div [ngSwitch]="tabsmanager">
+    <ion-list *ngSwitchCase="'schedule'">
+      <ion-searchbar (ionInput)="searchSchedule($event)"></ion-searchbar>
+       <button ion-item *ngFor="let dSchedule of dataSchedule" (click)="pushPageSchedule($event, dSchedule)">
+        <ion-icon class="wordWrap" name="md-people" item-left></ion-icon>
+          <span class="wordWrap"> {{dSchedule.detailCustomer.customer_name}}</span> <br />
+          <span class="wordWrap" style="font-size:13px">SN : {{dSchedule.contract.serial_number}}</span><br />
+          <span *ngIf="dSchedule.status_schedule == 'available'" class="wordWrap" style="background-color:#FBAB21;padding:3px;color:white;font-size:12px">
+            Schedule : {{dSchedule.schedule_date}}
+          </span>
+
+          <span *ngIf="dSchedule.status_schedule == 'took'" class="wordWrap" style="background-color:#D30CDF;padding:3px;color:white;font-size:12px">
+            Schedule : {{dSchedule.schedule_date}} - ( TOOK )
+          </span>
+
+          <span *ngIf="dSchedule.status_schedule == 'uncomplete'" class="wordWrap" style="background-color:#F94ADF;padding:3px;color:white;font-size:12px">
+            Schedule : {{dSchedule.schedule_date}} - ( CONTINUE )
+          </span>
+
+          <span *ngIf="dSchedule.status_schedule == 'notactive'" class="wordWrap" style="background-color:red;padding:3px;color:white;font-size:12px">
+            Schedule : {{dSchedule.schedule_date}} - ( NOT ACTIVE )
+          </span> 
+
+          <br />
+          <span class="wordWrap" style="font-size:11px">{{dSchedule.detailCustomer.customer_address}}</span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'task'">
+      <ion-searchbar (ionInput)="searchTask($event)"></ion-searchbar>
+      <button ion-item *ngFor="let dataTask of dataTask" (click)="pushPageTask($event,dataTask)">
+        <ion-icon class="wordWrap" name="md-people" item-left></ion-icon>
+          {{dataTask.detailCustomer.customer_name}} 
+          <div *ngIf="thisPrevilage == 'SPV'">
+            <div *ngIf="dataTask.status != 'pending'">
+              <span style="font-size:12px">Assigned to {{dataTask.employeeAssigned.employee_name}}</span>
+            </div>
+          </div>
+          <!-- <br /> -->
+          <!-- For status statement only -->
+          <div *ngIf="thisPrevilage == 'DLV'">
+            <div *ngIf="dataTask.status_delivery == 'took'">
+              <span class="wordWrap" style="background-color:#D30CDF;padding:3px;color:white;font-size:12px">SPIR-{{dataTask.spir_number}} - {{dataTask.status_delivery}}</span> <br />
+            </div>
+            <div *ngIf="dataTask.status_delivery == 'approve'">
+              <span class="wordWrap" style="background-color:blue;padding:3px;color:white;font-size:12px">SPIR-{{dataTask.spir_number}} - {{dataTask.status_delivery}}</span> <br />
+            </div>
+          </div><!-- / Delivery -->
+          <div *ngIf="thisPrevilage == 'SPV' || thisPrevilage == 'helpdesk' || thisPrevilage == 'CC'">
+            <div *ngIf="dataTask.status == 'assigned'">
+              <span class="wordWrap" style="background-color:#FBAB21;padding:3px;color:white;font-size:12px"><span *ngIf="dataTask.status == 'uncomplete'">Continue</span><span *ngIf="dataTask.status != 'uncomplete'">{{dataTask.status}}</span> - ({{dataTask.no_job_tiket}})</span> <br />
+            </div>
+            <div *ngIf="dataTask.status == 'uncomplete'">
+              <span class="wordWrap" style="background-color:#2FA7F3;padding:3px;color:white;font-size:12px"><span *ngIf="dataTask.status == 'uncomplete'">Continue</span><span *ngIf="dataTask.status != 'uncomplete'">{{dataTask.status}}</span> - ({{dataTask.no_job_tiket}})</span> <br />
+            </div>
+            <div *ngIf="dataTask.status == 'took'">
+              <span class="wordWrap" style="background-color:#D30CDF;padding:3px;color:white;font-size:12px"><span *ngIf="dataTask.status == 'uncomplete'">Continue</span><span *ngIf="dataTask.status != 'uncomplete'">{{dataTask.status}}</span> - ({{dataTask.no_job_tiket}})</span> <br />
+            </div>
+            <div *ngIf="dataTask.status == 'arrived'">
+              <span class="wordWrap" style="background-color:#D30CDF;padding:3px;color:white;font-size:12px"><span *ngIf="dataTask.status == 'uncomplete'">Continue</span><span *ngIf="dataTask.status != 'uncomplete'">{{dataTask.status}}</span> - ({{dataTask.no_job_tiket}})</span> <br />
+            </div>
+            <div *ngIf="dataTask.status == 'pending'">
+              <span class="wordWrap" style="background-color:red;padding:3px;color:white;font-size:12px"><span *ngIf="dataTask.status == 'uncomplete'">Continue</span><span *ngIf="dataTask.status != 'uncomplete'">{{dataTask.status}}</span> - ({{dataTask.no_job_tiket}})</span> <br />
+            </div>
+            <div *ngIf="dataTask.status == 'continue'">
+              <span class="wordWrap" style="background-color:#F94ADF;padding:3px;color:white;font-size:12px"><span *ngIf="dataTask.status == 'uncomplete'">Continue</span><span *ngIf="dataTask.status != 'uncomplete'">{{dataTask.status}}</span> - ({{dataTask.no_job_tiket}})</span> <br />
+            </div>
+          </div><!-- / Helpdesk and etc. -->
+          <div *ngIf="thisPrevilage == 'SE'">
+            <div *ngIf="dataTask.status == 'assigned'">
+              <span class="wordWrap" style="background-color:#FBAB21;padding:3px;color:white;font-size:12px"><span *ngIf="dataTask.status == 'uncomplete'">Continue</span><span *ngIf="dataTask.status != 'uncomplete'">{{dataTask.status}}</span> - ({{dataTask.no_job_tiket}})</span> <br />
+            </div>
+            <div *ngIf="dataTask.status == 'uncomplete'">
+              <span class="wordWrap" style="background-color:#2FA7F3;padding:3px;color:white;font-size:12px"><span *ngIf="dataTask.status == 'uncomplete'">Continue</span><span *ngIf="dataTask.status != 'uncomplete'">{{dataTask.status}}</span> - ({{dataTask.no_job_tiket}})</span> <br />
+            </div>
+            <div *ngIf="dataTask.status == 'took'">
+              <span class="wordWrap" style="background-color:#D30CDF;padding:3px;color:white;font-size:12px"><span *ngIf="dataTask.status == 'uncomplete'">Continue</span><span *ngIf="dataTask.status != 'uncomplete'">{{dataTask.status}}</span> - ({{dataTask.no_job_tiket}})</span> <br />
+            </div>
+            <div *ngIf="dataTask.status == 'arrived'">
+              <span class="wordWrap" style="background-color:#D30CDF;padding:3px;color:white;font-size:12px"><span *ngIf="dataTask.status == 'uncomplete'">Continue</span><span *ngIf="dataTask.status != 'uncomplete'">{{dataTask.status}}</span> - ({{dataTask.no_job_tiket}})</span> <br />
+            </div>
+            <div *ngIf="dataTask.status == 'continue'">
+              <span class="wordWrap" style="background-color:#F94ADF;padding:3px;color:white;font-size:12px"><span *ngIf="dataTask.status == 'uncomplete'">Continue</span><span *ngIf="dataTask.status != 'uncomplete'">{{dataTask.status}}</span> - ({{dataTask.no_job_tiket}})</span> <br />
+            </div>
+          </div><!-- / SE -->
+          <!-- End of it! -->
+          <span class="wordWrap" style="font-size:10px">{{dataTask.created_date_trouble | date: 'dd MMMM y'}} {{dataTask.created_date_trouble | date: 'shortTime'}}</span> <br />
+          <span class="wordWrap" style="font-size:12px">{{dataTask.detailCustomer.customer_address}}</span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'dashboard'">
+      <button (click)="toTask()" ion-item *ngIf="thisPrevilage == 'SPV' || thisPrevilage == 'helpdesk' || thisPrevilage == 'CC' || thisPrevilage == 'SE'">
+        <ion-icon name="asaba-setting" item-left></ion-icon>
+          Customer Call <br />
+          <span style="font-size:11px">{{dataDashboard.customer_call}} Pending</span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+      <button ion-item *ngIf="thisPrevilage != 'DLV'" (click)="toSchedule()">
+        <ion-icon name="asaba-printer" item-left></ion-icon>
+          MIF <br />
+          <span style="font-size:11px">{{dataDashboard.mif}} Unit</span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+      <!-- END OF MIF -->
+      <!-- Delivery Job -->
+      <button ion-item *ngIf="thisPrevilage == 'DLV'" (click)="toTask()">
+        <ion-icon name="md-people" item-left></ion-icon>
+          Delivery Job <br />
+          <span style="font-size:11px">{{dataDashboard.delivery_job}} Pending</span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+      <!-- CUSTOMER CALL -->
+      <button ion-item *ngIf="thisPrevilage == 'SE'" (click)="reportingPersonal(dataDashboard.pm,dataDashboard.customer_request,dataDashboard.cawf,dataDashboard.moreTwo)">
+        <ion-icon name="asaba-list" item-left></ion-icon>
+          Reporting Personal <br />
+          <span style="font-size:11px"></span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+      <!-- Reporting Personal -->
+      <button ion-item (click)="listMessage(dataDashboard.general_info)">
+        <ion-icon name="asaba-mail" item-left></ion-icon>
+          General Info <br />
+          <span style="font-size:11px">{{dataDashboard.count_general_info}} Info</span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+      <!-- SMART -->
+      <button ion-item *ngIf="thisPrevilage == 'SE' || thisPrevilage == 'SPV' || thisPrevilage == 'helpdesk'" (click)="openBrowser()">
+        <ion-icon name="asaba-lamp" item-left></ion-icon>
+          Smart <br />
+          <span style="font-size:11px"></span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </button>
+      <!-- <a button href="https://smart2.bt.konicaminolta.jp/mobile/" ion-item *ngIf="thisPrevilage == 'SE'">
+        <ion-icon name="asaba-lamp" item-left></ion-icon>
+          Smart <br />
+          <span style="font-size:11px"></span>
+        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </a> -->
+    </ion-list>
+  </div>
 </ion-content>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

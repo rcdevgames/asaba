@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{selectedHistory.detailCustomer.customer_name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Order Type</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.orderType.detail_order_type}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>EQ Number</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.contract.eq_number}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Serial Number</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.contract.serial_number}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Machine Type</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.machineType.mesin_type_name}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Address</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.detailCustomer.customer_address}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>PIC Name</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.contract.pic_customer}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>PIC Phone</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.contract.pic_phone}}" readOnly></ion-input>
+    </ion-item>
+
+     <ion-item>
+      <ion-label stacked>Overtime Rule</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.overtime.overtime_rule_name}}" readOnly></ion-input>
+    </ion-item>
+
+     <ion-item>
+      <ion-label stacked>Problem Clarification</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.problem.problem_name}}" readOnly></ion-input>
+    </ion-item>
+
+     <ion-item>
+      <ion-label stacked>Problem Description</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.problem_description}}" readOnly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Note</ion-label>
+      <ion-input type="text" placeholder="{{selectedHistory.status_desc}}" readOnly></ion-input>
+    </ion-item>
+
+    <div padding>
+    	<button ion-button icon-right full color="primary" (click)="viewMeter()">History Input Meter</button>
+    </div>
+  </ion-list>
+</ion-content>

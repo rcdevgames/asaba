@@ -1,0 +1,22 @@
+<ion-content>
+  <div class="logo">
+    <img src="assets/asaba.png" class="img-logo">
+  </div>
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>NIK</ion-label>
+      <ion-input type="text" name="nik" [(ngModel)]="login.nik"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" name="password" [(ngModel)]="login.password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button outline block color="primary" (click)="doLogin()">Login</button>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
