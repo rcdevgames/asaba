@@ -30,7 +30,7 @@ export class LoginPage {
 		this.nativeStorage.setItem('tokenStore', {'sessionToken' : params.session,'previlage' : params.previlage, 'employee' : params.data})
 		.then(dataToken => {
 			this.accessToken = dataToken;
-		}, 
+		},
 		error => console.error('Error storing token', error));
 
     // Events

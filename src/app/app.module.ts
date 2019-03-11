@@ -71,6 +71,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
+    HomePage,
     LoginPage,
     profileModal,
     MeterDetail,
@@ -113,6 +114,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    HomePage,
     HomePage,
     LoginPage,
     profileModal,

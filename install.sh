@@ -12,11 +12,11 @@ installCordova()
     rm -rf jobversand-v1.apk;
     echo "Build Ionic via Cordova"
     ionic cordova build android --release --prod;
-    cp /Users/macbook/IonicProject/_asaba_fix_/platforms/android/build/outputs/apk/android-release-unsigned.apk /Users/macbook/IonicProject/_asaba_fix_/android-release-unsigned.apk;
+    cp ~/my-project/Ionic/Jobversand/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ~/my-project/Ionic/Jobversand/android-release-unsigned.apk;
     echo "Sign APK Files"
-    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks android-release-unsigned.apk my-alias;
+    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore asaba-key.keystore android-release-unsigned.apk asaba;
     echo "Compress APK Files with zipalign"
-    zipalign -v 4 android-release-unsigned.apk jobversand-v1.apk;
+    ./zipalign -v 4 android-release-unsigned.apk jobversand-v1.apk;
     rm -rf android-release-unsigned.apk;
     rm -rf android-release-SIGNED_UNALIGNED.apk;
     echo "Installing apk to Android Devices"
@@ -103,7 +103,7 @@ uninstall(){
 
 doUninstall(){
   echo "Before this Process finish don't put your devices !!"
-  echo "Uninstall App On android via ADB" 
+  echo "Uninstall App On android via ADB"
   adb uninstall $packageName
 }
 ################################################################################

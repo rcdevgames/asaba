@@ -23,7 +23,7 @@ export class MyApp {
     this.initializeApp();
     // Validation
     // First Loaded
-    // this.nativeStorage.getItem('tokenStore').then( 
+    // this.nativeStorage.getItem('tokenStore').then(
     //   data => {
     //     console.log(data.employee.role);
     //   this.intializePage(data.employee.role);
@@ -85,7 +85,7 @@ export class MyApp {
       // this.splashScreen.hide();
       // First Loaded
       // this.backgroundMode.enable();
-      this.nativeStorage.getItem('tokenStore').then( 
+      this.nativeStorage.getItem('tokenStore').then(
         data => {
           console.log(data.employee.role);
         this.intializePage(data.employee.role);

@@ -53,7 +53,7 @@
 
           <span *ngIf="dSchedule.status_schedule == 'notactive'" class="wordWrap" style="background-color:red;padding:3px;color:white;font-size:12px">
             Schedule : {{dSchedule.schedule_date}} - ( NOT ACTIVE )
-          </span> 
+          </span>
 
           <br />
           <span class="wordWrap" style="font-size:11px">{{dSchedule.detailCustomer.customer_address}}</span>
@@ -65,7 +65,7 @@
       <ion-searchbar (ionInput)="searchTask($event)"></ion-searchbar>
       <button ion-item *ngFor="let dataTask of dataTask" (click)="pushPageTask($event,dataTask)">
         <ion-icon class="wordWrap" name="md-people" item-left></ion-icon>
-          {{dataTask.detailCustomer.customer_name}} 
+          {{dataTask.detailCustomer.customer_name}}
           <div *ngIf="thisPrevilage == 'SPV'">
             <div *ngIf="dataTask.status != 'pending'">
               <span style="font-size:12px">Assigned to {{dataTask.employeeAssigned.employee_name}}</span>
@@ -176,5 +176,3 @@
     </ion-list>
   </div>
 </ion-content>
-
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -12,7 +12,7 @@ import { NavController, NavParams, ToastController, LoadingController, Events } 
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { HomePage } from '../home/home';
+import { HomePage } from '../pages/home/home';
 var LoginPage = (function () {
     function LoginPage(navCtrl, navParams, toastCtrl, nativeStorage, http, loadingCtrl, events) {
         var _this = this;
