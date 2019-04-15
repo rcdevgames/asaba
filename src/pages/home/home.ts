@@ -22,7 +22,7 @@ import { ReportingPersonal } from '../dashboard/reporting_personal/ReportingPers
   templateUrl: 'home.html'
 })
 export class HomePage {
-  host : any = 'http://202.158.44.171/asabaApi/rest_api/';
+  host : any = 'http://54.39.167.4/thinktaskapi/rest_api/';
 	accessToken : any;
 	previlage : any = 'SE';
 	employee : any;
@@ -287,7 +287,7 @@ export class HomePage {
 	// Initialize session
 	initialize() {
     // this.loading.present();
-    this.nativeStorage.getItem('tokenStore').then( 
+    this.nativeStorage.getItem('tokenStore').then(
       data => {
         // console.log(JSON.stringify(data));
         if (data) {
@@ -429,7 +429,7 @@ export class HomePage {
     });
     actionSheet.present();
   }
-	
+
   // Push page schedule
   pushPageSchedule(event,item) {
     if (this.thisPrevilage === 'MTR') {
@@ -511,7 +511,7 @@ export class HomePage {
       customer_request : customer_request,
       cawf : cawf,
       more_two : moreTwo
-    }); 
+    });
   }
   openBrowser(){
     const browser = this.iab.create('https://smart2.bt.konicaminolta.jp/mobile/','_system');

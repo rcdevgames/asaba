@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-      <span class="logo-title">JobVersand</span>
+      <span class="logo-title">Thinktask</span>
       <div class="icon-right">
       <ion-icon class="forIcon" (click)="initialize()" name="md-refresh"></ion-icon>
 	    <!-- <ion-icon class="forIcon" (click)="presentActionSheet()" name="md-notifications"></ion-icon> -->
@@ -127,13 +127,13 @@
 
     <ion-list *ngSwitchCase="'dashboard'">
       <button (click)="toTask()" ion-item *ngIf="thisPrevilage == 'SPV' || thisPrevilage == 'helpdesk' || thisPrevilage == 'CC' || thisPrevilage == 'SE'">
-        <ion-icon name="asaba-setting" item-left></ion-icon>
+        <ion-icon name="cog" item-left></ion-icon>
           Customer Call <br />
           <span style="font-size:11px">{{dataDashboard.customer_call}} Pending</span>
         <ion-icon name="ios-arrow-forward" item-right></ion-icon>
       </button>
       <button ion-item *ngIf="thisPrevilage != 'DLV'" (click)="toSchedule()">
-        <ion-icon name="asaba-printer" item-left></ion-icon>
+        <ion-icon name="print" item-left></ion-icon>
           MIF <br />
           <span style="font-size:11px">{{dataDashboard.mif}} Unit</span>
         <ion-icon name="ios-arrow-forward" item-right></ion-icon>
@@ -141,28 +141,28 @@
       <!-- END OF MIF -->
       <!-- Delivery Job -->
       <button ion-item *ngIf="thisPrevilage == 'DLV'" (click)="toTask()">
-        <ion-icon name="md-people" item-left></ion-icon>
+        <ion-icon name="users" item-left></ion-icon>
           Delivery Job <br />
           <span style="font-size:11px">{{dataDashboard.delivery_job}} Pending</span>
         <ion-icon name="ios-arrow-forward" item-right></ion-icon>
       </button>
       <!-- CUSTOMER CALL -->
       <button ion-item *ngIf="thisPrevilage == 'SE'" (click)="reportingPersonal(dataDashboard.pm,dataDashboard.customer_request,dataDashboard.cawf,dataDashboard.moreTwo)">
-        <ion-icon name="asaba-list" item-left></ion-icon>
+        <ion-icon name="list" item-left></ion-icon>
           Reporting Personal <br />
           <span style="font-size:11px"></span>
         <ion-icon name="ios-arrow-forward" item-right></ion-icon>
       </button>
       <!-- Reporting Personal -->
       <button ion-item (click)="listMessage(dataDashboard.general_info)">
-        <ion-icon name="asaba-mail" item-left></ion-icon>
+        <ion-icon name="mail" item-left></ion-icon>
           General Info <br />
           <span style="font-size:11px">{{dataDashboard.count_general_info}} Info</span>
         <ion-icon name="ios-arrow-forward" item-right></ion-icon>
       </button>
       <!-- SMART -->
       <button ion-item *ngIf="thisPrevilage == 'SE' || thisPrevilage == 'SPV' || thisPrevilage == 'helpdesk'" (click)="openBrowser()">
-        <ion-icon name="asaba-lamp" item-left></ion-icon>
+        <ion-icon name="link" item-left></ion-icon>
           Smart <br />
           <span style="font-size:11px"></span>
         <ion-icon name="ios-arrow-forward" item-right></ion-icon>

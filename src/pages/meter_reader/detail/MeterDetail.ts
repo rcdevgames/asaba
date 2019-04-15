@@ -12,7 +12,7 @@ import { GeneralOpMeter } from '../generalOp/GeneralOpMeter';
 export class MeterDetail {
   selectedSchedule: any;
   nik : any;
-  host : any = 'http://202.158.44.171/asabaApi/rest_api/';
+  host : any = 'http://54.39.167.4/thinktaskapi/rest_api/';
   loading : any = this.loadingCtrl.create({
       content: 'Please wait...'
   });

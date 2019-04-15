@@ -257,7 +257,7 @@ export class GeneralGappMeter {
 
   // this.sendMail(this.selectedSchedule.id_schedule_customer);
   sendMail(id_schedule_customer){
-    this.http.get('http://202.158.44.171/jobversand/Mailer/sendMail/'+this.selectedSchedule.id_schedule_customer,{})
+    this.http.get('http://54.39.167.4/jobversand/Mailer/sendMail/'+this.selectedSchedule.id_schedule_customer,{})
     .subscribe(res => {
       console.log(res);
     });
