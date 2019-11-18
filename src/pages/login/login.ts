@@ -15,7 +15,7 @@ export class LoginPage {
   login : {nik : string, password: string};
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController,private nativeStorage: NativeStorage,public http : Http,public loadingCtrl : LoadingController, public events : Events, public plt: Platform) {
     // Get Host
-    this.host = 'http://202.158.44.171/asabaApi/rest_api/';
+    this.host = 'https://thinktask.abilhost.com/API/rest_api/';
     // Initalize
     this.login = { nik : '', password : '' };
     let toast = this.toastCtrl.create({

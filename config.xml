@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="id.asabapost.jvdlv" version="3.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Jobversand</name>
-    <description>ASABA ANDROID APPLICATION</description>
+<widget id="com.abilhost.thinktask" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Thinktask</name>
+    <description>THINKTASK ANDROID APPLICATION</description>
     <author email="care@abilhost.com" href="http://abilhost.com/">Abil Host Team</author>
     <content src="index.html" />
     <access origin="*" />

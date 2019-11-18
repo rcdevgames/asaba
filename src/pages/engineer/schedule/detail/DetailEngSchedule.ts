@@ -17,7 +17,7 @@ export class DetailEngSchedule {
   nik : any;
   destination:string;
   start:string;
-  host : string = 'http://202.158.44.171/asabaApi/rest_api/';
+  host : string = 'https://thinktask.abilhost.com/API/rest_api/';
   load : any = this.loading.create({
     content : 'Please wait...'
   });

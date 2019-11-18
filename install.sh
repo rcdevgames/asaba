@@ -14,7 +14,7 @@ installCordova()
     ionic cordova build android --release --prod;
     cp ~/my-project/Ionic/Jobversand/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ~/my-project/Ionic/Jobversand/android-release-unsigned.apk;
     echo "Sign APK Files"
-    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore asaba-key.keystore android-release-unsigned.apk asaba;
+    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore key.keystore android-release-unsigned.apk thinktive;
     echo "Compress APK Files with zipalign"
     ./zipalign -v 4 android-release-unsigned.apk jobversand-v1.apk;
     rm -rf android-release-unsigned.apk;
